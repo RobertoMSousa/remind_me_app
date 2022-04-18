@@ -1,6 +1,6 @@
 ## Description
 
-POC of a backend notification service using[Nest](https://github.com/nestjs/nest) and[PostgreSQL](https://www.postgresql.org/) for the database.
+POC of a backend notification service using [Nest](https://github.com/nestjs/nest) and [PostgreSQL](https://www.postgresql.org/) for the database.
 Using Apollo GraphQL for the API and Prisma for the ORM.
 
 ## Installation
