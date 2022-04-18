@@ -1,0 +1,33 @@
+type Collection {
+  id: ID!
+  name: String!
+  launchDate: String
+  description: String
+  image: String
+  nfts: [Nft]
+  subscribers: [User]
+}
+
+input CreateCollectionInput {
+  name: String!
+  launchDate: String
+  description: String
+  image: String
+}
+
+input UpdateCollectionInput {
+  id: ID
+  launchDate: String
+  description: String
+}
+
+type Query {
+  collections: [Collection]!
+  collection(id: Int!): Collection
+}
+
+type Mutation {
+  createCollection(createCollectionInput: CreateCollectionInput!): Collection!
+  updateCollection(updateCollectionInput: UpdateCollectionInput!): Collection!
+  removeCollection(id: Int!): Collection
+}

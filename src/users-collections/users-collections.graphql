@@ -1,0 +1,24 @@
+type UsersCollection {
+  collectionID: ID!
+  userID: ID!
+  userEmail: String!
+}
+
+input UpdateUsersCollectionInput {
+  userEmail: String!
+  collectionId: Int!
+}
+
+type Query {
+  usersCollections: [UsersCollection]!
+  usersCollection(id: Int!): UsersCollection
+}
+
+type Mutation {
+  subscribeCollection(
+    updateUsersCollectionInput: UpdateUsersCollectionInput
+  ): UsersCollection
+  unsubscribeCollection(
+    updateUsersCollectionInput: UpdateUsersCollectionInput
+  ): UsersCollection
+}

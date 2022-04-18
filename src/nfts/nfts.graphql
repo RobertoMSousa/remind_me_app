@@ -1,0 +1,30 @@
+type Nft {
+  id: ID!
+  name: String
+  mintedDate: String
+  description: String
+}
+
+input CreateNftInput {
+  name: String
+  mintedDate: String
+  description: String
+}
+
+input UpdateNftInput {
+  id: ID
+  name: String
+  mintedDate: String
+  description: String
+}
+
+type Query {
+  nfts: [Nft]!
+  nft(id: Int!): Nft
+}
+
+type Mutation {
+  createNft(createNftInput: CreateNftInput!): Nft!
+  updateNft(updateNftInput: UpdateNftInput!): Nft!
+  removeNft(id: Int!): Nft
+}

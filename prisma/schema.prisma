@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// collection table
+model Collection {
+  id          Int              @id @default(autoincrement())
+  name        String
+  launchDate  DateTime?
+  description String?
+  image       String?
+  subscribers UserCollection[]
+  nfts        Nft[]
+}
+
+model Nft {
+  id           Int         @id @default(autoincrement())
+  name         String
+  mintedDate   DateTime?
+  description  String?
+  Collection   Collection? @relation(fields: [collectionId], references: [id])
+  collectionId Int?
+}
+
+// user table
+model User {
+  id             Int              @id @default(autoincrement())
+  email          String           @unique
+  name           String?
+  UserCollection UserCollection[]
+}
+
+//  many to many relationship between User and Collection
+model UserCollection {
+  collectionId Int
+  Collection   Collection @relation(fields: [collectionId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
+  userId       Int
+
+  @@id([collectionId, userId])
+  @@unique([collectionId, userId])
+}
